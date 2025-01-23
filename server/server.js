@@ -14,6 +14,9 @@ const koalaRouter = require('./routes/koala.router');
 // Serve static files from the "public" directory (if any)
 app.use(express.static('server/public'));
 
+// Allows Express to parse JSON request bodies
+app.use(express.json());
+
 // ROUTES
 // Any request to "/koalas" will be handled by koalaRouter
 app.use('/koalas', koalaRouter);
