@@ -6,4 +6,6 @@ router.get('/', (req, res) => {
   res.send('Koala router is working!');
 });
 
+// Route to Koalas
+
 module.exports = router; 
