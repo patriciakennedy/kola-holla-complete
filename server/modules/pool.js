@@ -6,10 +6,12 @@ const { Pool } = require('pg');
 
 // pg configuration
 const pool = new Pool({
- database: 'koala_holla',
- host: 'localhost',
- port: 5432,
-})
+  user: 'postgres', 
+  password: 'test722', 
+  database: 'koala_holla',
+  host: 'localhost',
+  port: 5432,
+});
 
 // Event listeners for debugging connection status
 pool.on('connect', () => console.log('Connected to PostgreSQL'));
