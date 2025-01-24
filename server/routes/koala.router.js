@@ -23,7 +23,7 @@ koalaRouter.get('/', (req, res) => {
     });
 });
 
-// POST////////////////////////////////////////////////////////////////////////
+// POST ////////////////////////////////////////////////////////////////////////
 // Route to add a new koala to the database
 koalaRouter.post('/', (req, res) => {
   console.log('Incoming data:', req.body); // Debugging request body
@@ -47,6 +47,36 @@ koalaRouter.post('/', (req, res) => {
       res.sendStatus(500); //500 = Server Error
     });
 });
+
+// PUT ////////////////////////////////////////////////////////////////////////
+// Route to update a koala's transfer status
+koalaRouter.put('/:id', (req, res) => {
+  const koalaId = req.params.id; // Extract ID from request URL
+  const { ready_to_transfer } = req.body; // Extract new status from request body
+
+  const queryText = `
+    UPDATE "koalas" 
+    SET "ready_to_transfer" = $1 
+    WHERE "id" = $2;
+  `;
+
+  pool.query(queryText, [ready_to_transfer, koalaId])
+    .then(() => res.sendStatus(200)) // 200 = OK (Update successful)
+    .catch((err) => {
+      console.error('Error updating koala status:', err);
+      res.sendStatus(500); // 500 = Server Error
+    });
+});
+
+// tested this in Postman:METHOD = PUT:  http://localhost:5000/koalas/1 => and 201 Created
+//POSTMAN BODY: {"ready_to_transfer": true}
+
+
+
+
+
+
+
 
 
 
