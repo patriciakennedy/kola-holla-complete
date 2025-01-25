@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express(); // Create an instance of Express
 
+
 // Import Body-Parser (middleware for handling JSON request bodies)
 const bodyParser = require('body-parser');
 
@@ -16,6 +17,8 @@ app.use(express.static('server/public'));
 
 // Allows Express to parse JSON request bodies
 app.use(express.json());
+
+////////////////////////////////////////////////////////
 
 // ROUTES
 // Any request to "/koalas" will be handled by koalaRouter
